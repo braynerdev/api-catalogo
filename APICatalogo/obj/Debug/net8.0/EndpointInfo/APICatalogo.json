@@ -5,7 +5,7 @@
     "version": "v1"
   },
   "paths": {
-    "/api/Auth/login": {
+    "/api/auth/login": {
       "post": {
         "tags": [
           "Auth"
@@ -14,22 +14,22 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginModel"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginModel"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginModel"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginModel"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             }
           }
@@ -41,7 +41,7 @@
         }
       }
     },
-    "/api/Auth/register": {
+    "/api/auth/register": {
       "post": {
         "tags": [
           "Auth"
@@ -50,22 +50,22 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterModel"
+                "$ref": "#/components/schemas/RegisterRequestDTO"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterModel"
+                "$ref": "#/components/schemas/RegisterRequestDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterModel"
+                "$ref": "#/components/schemas/RegisterRequestDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterModel"
+                "$ref": "#/components/schemas/RegisterRequestDTO"
               }
             }
           }
@@ -77,7 +77,7 @@
         }
       }
     },
-    "/api/Auth/Refresh-token": {
+    "/api/auth/refresh-token": {
       "post": {
         "tags": [
           "Auth"
@@ -86,22 +86,22 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/TokenModel"
+                "$ref": "#/components/schemas/RefreshTokenRequest"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TokenModel"
+                "$ref": "#/components/schemas/RefreshTokenRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TokenModel"
+                "$ref": "#/components/schemas/RefreshTokenRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TokenModel"
+                "$ref": "#/components/schemas/RefreshTokenRequest"
               }
             }
           }
@@ -113,7 +113,7 @@
         }
       }
     },
-    "/api/Auth/revoke/{username}": {
+    "/api/auth/revoke/{username}": {
       "post": {
         "tags": [
           "Auth"
@@ -135,185 +135,7 @@
         }
       }
     },
-    "/Categoria": {
-      "get": {
-        "tags": [
-          "Categoria"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CategoriaDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CategoriaDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CategoriaDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Categoria"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Categoria"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/ola": {
-      "get": {
-        "tags": [
-          "Categoria"
-        ],
-        "parameters": [
-          {
-            "name": "nome",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Categoria/{id}": {
+    "/api/categoria/{id}": {
       "get": {
         "tags": [
           "Categoria"
@@ -332,24 +154,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -372,114 +177,41 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
+                "$ref": "#/components/schemas/CategoriaRequestDTO"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
+                "$ref": "#/components/schemas/CategoriaRequestDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
+                "$ref": "#/components/schemas/CategoriaRequestDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoriaDTO"
+                "$ref": "#/components/schemas/CategoriaRequestDTO"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaDTO"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/Categoria/Paginator": {
+    "/api/categoria/paginator": {
       "get": {
         "tags": [
           "Categoria"
         ],
         "parameters": [
           {
-            "name": "NumberPage",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CategoriaDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CategoriaDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CategoriaDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Categoria/filtro/nome": {
-      "get": {
-        "tags": [
-          "Categoria"
-        ],
-        "parameters": [
-          {
-            "name": "Nome",
+            "name": "Name",
             "in": "query",
             "schema": {
               "type": "string"
@@ -494,6 +226,13 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
             "schema": {
@@ -508,26 +247,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CategoriaDTO"
-                  }
+                  "$ref": "#/components/schemas/CategoriaResponseDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CategoriaDTO"
-                  }
+                  "$ref": "#/components/schemas/CategoriaResponseDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CategoriaDTO"
-                  }
+                  "$ref": "#/components/schemas/CategoriaResponseDTO"
                 }
               }
             }
@@ -535,7 +265,43 @@
         }
       }
     },
-    "/Categoria/{id}/updatepartial": {
+    "/api/categoria": {
+      "post": {
+        "tags": [
+          "Categoria"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaRequestDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaRequestDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaRequestDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaRequestDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/deactivate/{id}": {
       "patch": {
         "tags": [
           "Categoria"
@@ -551,210 +317,17 @@
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
-              }
-            },
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaUpdateResponseDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaUpdateResponseDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoriaUpdateResponseDTO"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/Produto": {
-      "get": {
+    "/activate/{id}": {
+      "patch": {
         "tags": [
-          "Produto"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Produtos"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Produtos"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Produtos"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Produto"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProdutoDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProdutoDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProdutoDTO"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Produto"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProdutoDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProdutoDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProdutoDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/produtos/categoria{id}": {
-      "get": {
-        "tags": [
-          "Produto"
+          "Categoria"
         ],
         "parameters": [
           {
@@ -769,24 +342,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Produtos"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Produtos"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Produtos"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
@@ -810,24 +366,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Produtos"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Produtos"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Produtos"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -850,22 +389,22 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
+                "$ref": "#/components/schemas/ProdutoRequestDTO"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
+                "$ref": "#/components/schemas/ProdutoRequestDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
+                "$ref": "#/components/schemas/ProdutoRequestDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ProdutoDTO"
+                "$ref": "#/components/schemas/ProdutoRequestDTO"
               }
             }
           }
@@ -876,17 +415,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProdutoDTO"
+                  "$ref": "#/components/schemas/StringResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProdutoDTO"
+                  "$ref": "#/components/schemas/StringResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProdutoDTO"
+                  "$ref": "#/components/schemas/StringResponse"
                 }
               }
             }
@@ -901,82 +440,33 @@
         ],
         "parameters": [
           {
-            "name": "NumberPage",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProdutoDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProdutoDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProdutoDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Produto/filter/preco": {
-      "get": {
-        "tags": [
-          "Produto"
-        ],
-        "parameters": [
-          {
-            "name": "Preco",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "Criterios",
+            "name": "Name",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
+            "name": "Categoria",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "name": "NumberPage",
             "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -994,26 +484,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProdutoDTO"
-                  }
+                  "$ref": "#/components/schemas/ProdutoRequestDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProdutoDTO"
-                  }
+                  "$ref": "#/components/schemas/ProdutoRequestDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProdutoDTO"
-                  }
+                  "$ref": "#/components/schemas/ProdutoRequestDTO"
                 }
               }
             }
@@ -1021,7 +502,60 @@
         }
       }
     },
-    "/Produto/{id}/updatePartial": {
+    "/Produto": {
+      "post": {
+        "tags": [
+          "Produto"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdutoRequestDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdutoRequestDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdutoRequestDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdutoRequestDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoResponseDTOResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoResponseDTOResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoResponseDTOResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Produto/{id}/estoque/add": {
       "patch": {
         "tags": [
           "Produto"
@@ -1079,17 +613,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProdutoUpdateResponseDTO"
+                  "$ref": "#/components/schemas/ProdutoResponseDTOResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProdutoUpdateResponseDTO"
+                  "$ref": "#/components/schemas/ProdutoResponseDTOResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProdutoUpdateResponseDTO"
+                  "$ref": "#/components/schemas/ProdutoResponseDTOResponse"
                 }
               }
             }
@@ -1097,23 +631,158 @@
         }
       }
     },
-    "/api/Roles/create-role": {
-      "post": {
+    "/Produto/{id}/estoque/Remover": {
+      "patch": {
         "tags": [
-          "Roles"
+          "Produto"
         ],
         "parameters": [
           {
-            "name": "roleName",
-            "in": "query",
+            "name": "id",
+            "in": "path",
+            "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoResponseDTOResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoResponseDTOResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoResponseDTOResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Produto/deactivate/{id}": {
+      "patch": {
+        "tags": [
+          "Produto"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriaResponseDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriaResponseDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriaResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Produto/activate/{id}": {
+      "patch": {
+        "tags": [
+          "Produto"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriaResponseDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriaResponseDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriaResponseDTO"
+                }
+              }
+            }
           }
         }
       }
@@ -1123,25 +792,50 @@
         "tags": [
           "Roles"
         ],
-        "parameters": [
-          {
-            "name": "email",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "roleName",
-            "in": "query",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesRequestDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesRequestDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesRequestDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesRequestDTO"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolesResponseDTOResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolesResponseDTOResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolesResponseDTOResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -1151,25 +845,50 @@
         "tags": [
           "Roles"
         ],
-        "parameters": [
-          {
-            "name": "email",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "roleName",
-            "in": "query",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesRequestDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesRequestDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesRequestDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolesRequestDTO"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolesResponseDTOResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolesResponseDTOResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolesResponseDTOResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -1185,26 +904,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AplicationRoles"
-                  }
+                  "$ref": "#/components/schemas/RolesResponseDTOIEnumerableResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AplicationRoles"
-                  }
+                  "$ref": "#/components/schemas/RolesResponseDTOIEnumerableResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AplicationRoles"
-                  }
+                  "$ref": "#/components/schemas/RolesResponseDTOIEnumerableResponse"
                 }
               }
             }
@@ -1229,58 +939,24 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Roles/editar-permissao/{id}": {
-      "put": {
-        "tags": [
-          "Roles"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolesResponseDTOResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolesResponseDTOResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolesResponseDTOResponse"
+                }
+              }
             }
-          },
-          {
-            "name": "newRoleName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Roles/remover-permissao/{id}": {
-      "delete": {
-        "tags": [
-          "Roles"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         }
       }
@@ -1288,48 +964,14 @@
   },
   "components": {
     "schemas": {
-      "AplicationRoles": {
-        "required": [
-          "id",
-          "name",
-          "normalizedName"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "name": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "normalizedName": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "concurrencyStamp": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CategoriaDTO": {
+      "CategoriaRequestDTO": {
         "required": [
           "imagemUrl",
-          "nome"
+          "name"
         ],
         "type": "object",
         "properties": {
-          "categoriaId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nome": {
+          "name": {
             "maxLength": 80,
             "minLength": 0,
             "type": "string"
@@ -1342,14 +984,14 @@
         },
         "additionalProperties": false
       },
-      "CategoriaUpdateResponseDTO": {
+      "CategoriaResponseDTO": {
         "type": "object",
         "properties": {
-          "categoriaId": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "nome": {
+          "name": {
             "type": "string",
             "nullable": true
           },
@@ -1360,7 +1002,7 @@
         },
         "additionalProperties": false
       },
-      "LoginModel": {
+      "LoginRequest": {
         "required": [
           "password",
           "username"
@@ -1368,7 +1010,8 @@
         "type": "object",
         "properties": {
           "username": {
-            "minLength": 1,
+            "maxLength": 100,
+            "minLength": 0,
             "type": "string"
           },
           "password": {
@@ -1415,20 +1058,15 @@
         "type": "integer",
         "format": "int32"
       },
-      "ProdutoDTO": {
+      "ProdutoRequestDTO": {
         "required": [
           "categoriaId",
           "descricao",
-          "imagemUrl",
           "name",
           "preco"
         ],
         "type": "object",
         "properties": {
-          "produtoId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "name": {
             "maxLength": 80,
             "minLength": 0,
@@ -1446,7 +1084,8 @@
           "imagemUrl": {
             "maxLength": 300,
             "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "categoriaId": {
             "type": "integer",
@@ -1455,7 +1094,7 @@
         },
         "additionalProperties": false
       },
-      "ProdutoUpdateResponseDTO": {
+      "ProdutoResponseDTO": {
         "type": "object",
         "properties": {
           "produtoId": {
@@ -1478,80 +1117,68 @@
             "type": "string",
             "nullable": true
           },
-          "estoque": {
-            "type": "number",
-            "format": "float"
-          },
-          "dataCadastro": {
-            "type": "string",
-            "format": "date-time"
-          },
           "categoriaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "estoque": {
             "type": "integer",
             "format": "int32"
           }
         },
         "additionalProperties": false
       },
-      "Produtos": {
+      "ProdutoResponseDTOResponse": {
+        "type": "object",
+        "properties": {
+          "valid": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProdutoResponseDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshTokenRequest": {
         "required": [
-          "descricao",
-          "imagemUrl",
-          "name",
-          "preco"
+          "accessToken",
+          "tokenRefresh"
         ],
         "type": "object",
         "properties": {
-          "produtoId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "maxLength": 80,
-            "minLength": 0,
+          "accessToken": {
+            "minLength": 1,
             "type": "string"
           },
-          "descricao": {
-            "maxLength": 300,
-            "minLength": 0,
+          "tokenRefresh": {
+            "minLength": 1,
             "type": "string"
-          },
-          "preco": {
-            "type": "number",
-            "format": "double"
-          },
-          "imagemUrl": {
-            "maxLength": 300,
-            "minLength": 0,
-            "type": "string"
-          },
-          "estoque": {
-            "maximum": 999999,
-            "minimum": 1,
-            "type": "number",
-            "format": "float"
-          },
-          "dataCadastro": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "categoriaId": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false
       },
-      "RegisterModel": {
+      "RegisterRequestDTO": {
         "required": [
           "email",
+          "name",
           "password",
           "username"
         ],
         "type": "object",
         "properties": {
           "username": {
-            "minLength": 1,
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 150,
+            "minLength": 0,
             "type": "string"
           },
           "email": {
@@ -1561,19 +1188,99 @@
           },
           "password": {
             "minLength": 1,
+            "pattern": "^(?=.*[A-Z])(?=.*[#@$]).{8,}$",
             "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "TokenModel": {
+      "RolesRequestDTO": {
+        "required": [
+          "email",
+          "roleId"
+        ],
         "type": "object",
         "properties": {
-          "accessToken": {
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "roleId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "RolesResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "name": {
             "type": "string",
             "nullable": true
           },
-          "tokenRefresh": {
+          "normalizedName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RolesResponseDTOIEnumerableResponse": {
+        "type": "object",
+        "properties": {
+          "valid": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RolesResponseDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RolesResponseDTOResponse": {
+        "type": "object",
+        "properties": {
+          "valid": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/RolesResponseDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StringResponse": {
+        "type": "object",
+        "properties": {
+          "valid": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
             "type": "string",
             "nullable": true
           }

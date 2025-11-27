@@ -2,7 +2,7 @@
 {
     public record UserResponseDTO
     (
-        int Id,
+        string Id,
         string Username
     );
 }

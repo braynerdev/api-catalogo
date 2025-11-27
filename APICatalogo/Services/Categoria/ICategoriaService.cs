@@ -10,7 +10,7 @@ namespace APICatalogo.Services.Categoria
     public interface ICategoriaService
     {
         Task<Response<CategoriaResponseDTO>> GetById(int id);
-        Task<Response<PagdList<Categorias>>> GetPaginator(CategoriasPaginator categoriasPaginator);
+        Task<Response<CategoriaPaginatorResponseDTO>> GetPaginator(CategoriasPaginator categoriasPaginator);
         Task<Response<CategoriaResponseDTO>> Created(CategoriaRequestDTO categoriaRequestDTO);
         Task<Response<CategoriaResponseDTO>> Put(int id, CategoriaRequestDTO categoriaRequestDTO);
         Task<Response<CategoriaResponseDTO>> Deactivate(int id);

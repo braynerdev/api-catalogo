@@ -9,13 +9,16 @@ namespace APICatalogo.Models
         [Column("tipo", TypeName="varchar(8)")]
         public string Tipo { get; set; }
 
-        [Column("tipo", TypeName = "interger")]
-        public int StatusCode { get; set; }
+        [Column("status_code", TypeName = "int")]
+        public int? StatusCode { get; set; }
 
         [Column("table_name", TypeName = "varchar(150)")]
         public string TableName { get; set; }
 
-        [Column("register_id", TypeName = "interger")]
-        public int RegisterId { get; set; }
+        [Column("register_id", TypeName = "int")]
+        public int? RegisterId { get; set; }
+
+        [Column("user_id", TypeName = "varchar(150)")]
+        public string UserId { get; set; }
     }
 }

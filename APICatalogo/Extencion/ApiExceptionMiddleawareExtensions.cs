@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
-using APICatalogo.Models;
+using APICatalogo.DTOs;
 
 namespace APICatalogo.Extencion;
 public static class ApiExceptionMiddleawareExtensions {

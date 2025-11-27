@@ -15,44 +15,35 @@ namespace APICatalogo.Repositories.Produto
         {
         }
 
-        public async Task<PagdList<Produtos>> GetProdutosAsync(ProdutosPaginator paginatorParams)
+        public async Task<bool> GetByExists(int id)
         {
-            var produtos = await GetAllAsync();
-            var produtosOrdenados = produtos.OrderBy(p => p.ProdutoId).AsQueryable();
-            var pageListdProdutos = PagdList<Produtos>.ToPagdList(produtosOrdenados, paginatorParams.NumberPage, paginatorParams.PageSize);
-            return pageListdProdutos;
+            bool produto = await _context.Produtos.AnyAsync(p => p.Id == id);
+            return produto;
         }
 
+        public async Task<Produtos> GetById(int id)
+        {
+            Produtos produto = _context.Produtos.FirstOrDefault(p => p.Id == id);
+            return produto;
+        }
 
-        public async Task<PagdList<Produtos>> GetProdutosFilterPrecoAsync(ProdutoFilterPreco produtoFilterPreco)
+        public async Task<PagdList<Produtos>> GetPaginator(ProdutosPaginator paginatorParams)
         {
             var produtos = await GetAllAsync();
+            var name = paginatorParams.Name;
+            var categoria = paginatorParams.Categoria;
 
-            if (produtoFilterPreco.Preco.HasValue && !string.IsNullOrEmpty(produtoFilterPreco.Criterios))
+            if (!string.IsNullOrEmpty(name))
             {
-                if (produtoFilterPreco.Criterios.Equals("menor", StringComparison.OrdinalIgnoreCase))
-                {
-                    produtos = produtos.Where(p => p.Preco < produtoFilterPreco.Preco);
-                }
-                else if (produtoFilterPreco.Criterios.Equals("igual", StringComparison.OrdinalIgnoreCase))
-                {
-                    produtos = produtos.Where(p => p.Preco == produtoFilterPreco.Preco);
-                }
-                else if (produtoFilterPreco.Criterios.Equals("maior", StringComparison.OrdinalIgnoreCase))
-                {
-                    produtos = produtos.Where(p => p.Preco > produtoFilterPreco.Preco);
-                }
-                else if (produtoFilterPreco.Criterios.Equals("menorigual", StringComparison.OrdinalIgnoreCase))
-                {
-                    produtos = produtos.Where(p => p.Preco <= produtoFilterPreco.Preco);
-                }
-                else if (produtoFilterPreco.Criterios.Equals("maiorigual", StringComparison.OrdinalIgnoreCase))
-                {
-                    produtos = produtos.Where(p => p.Preco >= produtoFilterPreco.Preco);
-                }
+                produtos = produtos.Where(p => p.Name == name);
             }
-            var produtosFiltrados = PagdList<Produtos>.ToPagdList(produtos.AsQueryable(), produtoFilterPreco.NumberPage, produtoFilterPreco.PageSize);
-            return produtosFiltrados;
+
+            if (categoria.HasValue)
+            {
+                produtos = produtos.Where(p => p.Categoria.Id == categoria.Value);
+            }
+            var pageListdProdutos = PagdList<Produtos>.ToPagdList(produtos, c => c.Id, paginatorParams.OrderBy, paginatorParams.NumberPage, paginatorParams.PageSize);
+            return pageListdProdutos;
         }
     }
 }

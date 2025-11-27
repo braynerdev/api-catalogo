@@ -8,6 +8,7 @@ using APICatalogo.Repositories.Produto;
 using APICatalogo.Services;
 using APICatalogo.Services.Auth;
 using APICatalogo.Services.Categoria;
+using APICatalogo.Services.Roles;
 using Microsoft.AspNetCore.Identity;
 
 namespace APICatalogo.Conf
@@ -24,12 +25,13 @@ namespace APICatalogo.Conf
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ITokenService, GenerateAccessTokenService>();
+            services.AddScoped<IRolesService, RolesService>();
 
             services.AddAutoMapper(typeof(DomainToMappingProfile));
 
-            services.AddIdentity<AplicationUser, IdentityRole>().
-                AddEntityFrameworkStores<AppDbContext>()
-                .AddDefaultTokenProviders();
+            //services.AddIdentity<AplicationUser, IdentityRole>().
+            //    AddEntityFrameworkStores<AppDbContext>()
+            //    .AddDefaultTokenProviders();
 
             return services;
         }

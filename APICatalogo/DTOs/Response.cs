@@ -17,9 +17,9 @@
             Data = data;
         }
 
-        public Response(string message)
+        public Response(string message, bool valid)
         {
-            Valid = false;
+            Valid = valid;
             Message = message;
         }
 
@@ -27,15 +27,14 @@
         {
             if (data == null)
             {
-                return new Response<T>(message);
+                return new Response<T>(message, true);
             }
-            return new Response<T>(message, data);
-            
+            return new Response<T>(message, data); 
         }
 
         public static Response<T> Fail(string message)
         {
-            return new Response<T>(message);
+            return new Response<T>(message, false);
         }
     }
 }

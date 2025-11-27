@@ -6,11 +6,6 @@ namespace APICatalogo.Models
 {
     public class AplicationUser : IdentityUser
     {
-        [Key]
-        [Required]
-        [Column("id")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; private set; }
 
         [Column("name",TypeName = "varchar(150)")]
         public string Name { get; set; }

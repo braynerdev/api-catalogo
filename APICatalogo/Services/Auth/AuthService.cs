@@ -115,6 +115,8 @@ namespace APICatalogo.Services.Auth
                 Email = registerRequestDTO.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = registerRequestDTO.Username,
+                Name = registerRequestDTO.Name,
+                NormalizedName = registerRequestDTO.Name.ToUpper(),
             };
 
             var result = await _userManage.CreateAsync(user, registerRequestDTO.Password);

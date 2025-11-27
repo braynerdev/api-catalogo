@@ -13,20 +13,12 @@ using System.Security.Claims;
 
 namespace APICatalogo.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly ITokenService _tokenService;
-        private readonly UserManager<AplicationUser> _userManage;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IConfiguration _configuration;
-
 
         private readonly IAuthService _authService;
-
-
-
         public AuthController(IAuthService authService)
         {
             _authService = authService;
@@ -45,7 +37,7 @@ namespace APICatalogo.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequestDTO registerRequestDTO)
         {
             var service = await _authService.Register(registerRequestDTO);
-            return service.Valid ? Ok(service) : BadRequest(service);
+            return service.Valid ? StatusCode(201, service) : BadRequest(service);
         }
 
         [HttpPost]

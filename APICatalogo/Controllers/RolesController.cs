@@ -1,8 +1,10 @@
 ﻿using APICatalogo.DTOs;
+using APICatalogo.DTOs.Roles;
 using APICatalogo.Models;
 using APICatalogo.Paginator;
 using APICatalogo.Repositories;
 using APICatalogo.Services;
+using APICatalogo.Services.Roles;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -15,200 +17,53 @@ namespace APICatalogo.Controllers
     [ApiController]
     public class RolesController : ControllerBase
     {
-        private readonly UserManager<AplicationUser> _userManage;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IRolesService _rolesService;
 
-        public RolesController(ITokenService tokenService,
-            UserManager<AplicationUser> userManage,
-            RoleManager<IdentityRole> roleManager,
-            IConfiguration configuration)
+        public RolesController(IRolesService rolesService)
         {
-            _userManage = userManage;
-            _roleManager = roleManager;
+            _rolesService = rolesService;
         }
 
-        [HttpPost]
-        [Authorize(Policy = "AdminOnly")]
-        [Route("create-role")]
-        public async Task<IActionResult> CreateRole(string roleName)
-        {
-            var role = await _roleManager.RoleExistsAsync(roleName);
-            if (!role)
-            {
-                var createRole = await _roleManager.CreateAsync(new IdentityRole(roleName));
-                if (createRole.Succeeded)
-                {
-                    return StatusCode(StatusCodes.Status200OK,
-                        new Response { status = "sucesso", message = $"Permissão {roleName} criada com sucesso" });
-                }
-                else
-                {
-                    return StatusCode(StatusCodes.Status400BadRequest,
-                        new Response { status = "Error", message = $"Erro na criação da premissão {roleName}" });
-                }
-            }
-            return StatusCode(StatusCodes.Status400BadRequest,
-                new Response { status = "Error", message = $"Peremissão {roleName} já existe!" });
-        }
-
+        
         [HttpPost]
         [Route("adicionar-role-user")]
         [Authorize(Policy = "AdminOnly")]
-        public async Task<IActionResult> AddRoleUser(string email, string roleName)
+        public async Task<ActionResult<Response<RolesResponseDTO>>> AddRoleUser([FromBody] RolesRequestDTO rolesRequestDTO)
         {
-            var user = await _userManage.FindByEmailAsync(email);
-            var role = await _roleManager.FindByNameAsync(roleName);
+            var service = await _rolesService.AddRoleUser(rolesRequestDTO);
 
-            if (user is not null && role is not null)
-            {
-                var addRoleUser = await _userManage.AddToRoleAsync(user, roleName);
-
-                if (addRoleUser.Succeeded)
-                {
-                    return StatusCode(StatusCodes.Status200OK,
-                        new Response { status = "Success", message = $"Permissão {roleName} adicionada ao usuário {user.UserName}!" });
-                }
-                else
-                {
-                    return StatusCode(StatusCodes.Status400BadRequest,
-                        new Response { status = "Error", message = $"Não foi possível adicionar {roleName} ao usuário {user.UserName}!" });
-                }
-            }
-            else if (user is null)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                        new Response { status = "Error", message = $"Usuário {user.UserName} Não existe!" });
-            }
-            else
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                        new Response { status = "Error", message = $"Permissão {roleName} Não existe!" });
-            }
+            return service.Valid ? Ok(service) : BadRequest(service);
         }
 
         [HttpPost]
         [Route("remove-perm-user")]
         [Authorize(Policy = "AdminOnly")]
-        public async Task<IActionResult> RemovePermUser(string email, string roleName)
+        public async Task<ActionResult<Response<RolesResponseDTO>>> RemoveRoleUser([FromBody] RolesRequestDTO rolesRequestDTO)
         {
-            var user = await _userManage.FindByEmailAsync(email);
-            var role = await _roleManager.FindByNameAsync(roleName);
-            var userPerm = await _userManage.IsInRoleAsync(user, roleName);
+            var service = await _rolesService.RemoveRoleUser(rolesRequestDTO);
 
-            if (user is not null && role is not null && userPerm)
-            {
-                var addRoleUser = await _userManage.RemoveFromRoleAsync(user, roleName);
-
-                if (addRoleUser.Succeeded)
-                {
-                    return StatusCode(StatusCodes.Status200OK,
-                        new Response { status = "Success", message = $"Permissão {roleName} removida do usuário {user.UserName}!" });
-                }
-                else
-                {
-                    return StatusCode(StatusCodes.Status400BadRequest,
-                        new Response { status = "Error", message = $"Não foi possível remover {roleName} do usuário {user.UserName}!" });
-                }
-            }
-            else if (user is null)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                        new Response { status = "Error", message = $"Usuário {user.UserName} Não existe!" });
-            }
-            else if (!userPerm)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                        new Response { status = "Error", message = $"A permissão não pode ser removida pois o usuário Não tem {roleName}" });
-            }
-            else
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                        new Response { status = "Error", message = $"Permissão {roleName} Não existe!" });
-            }
+            return service.Valid ? Ok(service) : BadRequest(service);
         }
 
         [HttpGet]
         [Route("role-all")]
         [Authorize(Policy = "AdminOnly")]
-        public async Task<ActionResult<IEnumerable<AplicationRoles>>> RoleAll()
+        public async Task<ActionResult<Response<IEnumerable<RolesResponseDTO>>>> RoleAll()
         {
-            var perm = await _roleManager.Roles.AsNoTracking().ToListAsync();
+            var service = await _rolesService.RoleAll();
 
-            if (perm is null)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    new Response { status = "Error", message = "Não Existe Permissão!" });
-            }
-            return Ok(perm);
+            return service.Valid ? Ok(service) : BadRequest(service);
         }
 
         [HttpGet]
         [Route("role-all/{id}")]
         [Authorize(Policy = "AdminOnly")]
-        public async Task<IActionResult> Role(string id)
+        public async Task<ActionResult<Response<RolesResponseDTO>>> Role(string id)
         {
-            if (id is null)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    new Response { status = "Error", message = "Não Existe Permissão!" });
-            }
-            var perm = await _roleManager.FindByIdAsync(id);
+            var service = await _rolesService.RoleId(id);
 
-            if (perm is null)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    new Response { status = "Error", message = "Não Existe Permissão!" });
-            }
-            return Ok(perm);
+            return service.Valid ? Ok(service) : BadRequest(service);
         }
 
-        [HttpPut]
-        [Route("editar-permissao/{id}")]
-        [Authorize(Policy = "AdminOnly")]
-        public async Task<IActionResult> EditarPermissao(string id, string newRoleName)
-        {
-            var role = await _roleManager.FindByIdAsync(id);
-
-            if (role is null)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    new Response { status = "Error", message = "Permissão Não Existe!" });
-            }
-
-            role.Name = newRoleName;
-            var result = await _roleManager.UpdateAsync(role);
-
-            if (!result.Succeeded)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    new Response { status = "Error", message = "Não foi possivel alterar o nome da permissão!" });
-            }
-
-            return Ok(new Response { status = "Success", message = "Nome da permissão alterado com sucesso!" });
-        }
-
-        [HttpDelete]
-        [Route("remover-permissao/{id}")]
-        [Authorize(Policy = "AdminOnly")]
-        public async Task<IActionResult> RemoverPermissao(string id)
-        {
-            var role = await _roleManager.FindByIdAsync(id);
-
-            if (role is null)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    new Response { status = "Error", message = "Permissão Não Existe!" });
-            }
-
-            var result = await _roleManager.DeleteAsync(role);
-
-            if (!result.Succeeded)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest,
-                    new Response { status = "Error", message = "Não foi possivel deletar a permissão!" });
-            }
-
-            return Ok(new Response { status = "Success", message = "Permissão deletada com sucesso!" });
-        }
     }
 }

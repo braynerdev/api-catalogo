@@ -7,7 +7,7 @@ namespace APICatalogo.Models
     {
         [Key]
         [Required]
-        [Column("id", TypeName = "interger")]
+        [Column("id", TypeName = "int")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
@@ -17,7 +17,7 @@ namespace APICatalogo.Models
         [Column("update_at")]
         public DateTime UpdateAt { get; set; }
 
-        [Column("active", TypeName = "boolean")]
+        [Column("active", TypeName = "tinyint(1)")]
         public bool Active { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace APICatalogo.DTOs.Categoria
     {
         [Required]
         [StringLength(80)]
-        public string? Nome { get; init; }
+        public string? Name { get; init; }
 
         [Required]
         [StringLength(300)]

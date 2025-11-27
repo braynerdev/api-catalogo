@@ -1,6 +1,7 @@
 ﻿using APICatalogo.DTOs;
 using APICatalogo.DTOs.Auth;
 using APICatalogo.DTOs.Categoria;
+using APICatalogo.DTOs.Produto;
 using APICatalogo.Models;
 using APICatalogo.Paginator.Categoria;
 using APICatalogo.Paginator.Conf;
@@ -89,15 +90,33 @@ namespace APICatalogo.Services.Categoria
 
         }
 
-        public async Task<Response<PagdList<Categorias>>> GetPaginator(CategoriasPaginator categoriasPaginator)
+        public async Task<Response<CategoriaPaginatorResponseDTO>> GetPaginator(CategoriasPaginator categoriasPaginator)
         {
             var categorias = await _unf.CategoriaRepositorie.GetCategoriasPaginator(categoriasPaginator);
 
             if(categorias.Count < 1)
             {
-                return Response<PagdList<Categorias>>.Fail("Nenhuma categoria encontrada!");
+                return Response<CategoriaPaginatorResponseDTO>.Fail("Nenhuma categoria encontrada!");
             }
-            return Response<PagdList<Categorias>>.Success("Categorias resgatadas com sucesso!", categorias);
+
+            var categoriasDto =  _mapper.Map<List<CategoriaResponseDTO>>(categorias);
+
+            var response =  new CategoriaPaginatorResponseDTO
+            {
+                Paginator = new PaginatorResponseDTO
+                {
+                    CurrentPag = categorias.CurrentPag,
+                    TotalPages = categorias.TotalPages,
+                    PageSize = categorias.PageSize,
+                    TotalCount = categorias.TotalCount,
+                    HasNext = categorias.HasNext,
+                    HasPreview = categorias.HasPreview
+                },
+                Items = categoriasDto
+            };
+
+
+            return Response<CategoriaPaginatorResponseDTO>.Success("Categorias resgatadas com sucesso!", response);
         }
 
         public async Task<Response<CategoriaResponseDTO>> Put(int id, CategoriaRequestDTO categoriaRequestDTO)

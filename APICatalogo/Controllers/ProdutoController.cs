@@ -41,115 +41,101 @@ namespace APICatalogo.Controllers
         }
 
         [HttpGet("paginator")]
-        public async Task<ActionResult<IEnumerable<ProdutoRequestDTO>>> GetPaginator([FromQuery] ProdutosPaginator paginatorParams)
+        public async Task<ActionResult<ProdutoRequestDTO>> GetPaginator([FromQuery] ProdutosPaginator paginatorParams)
         {
-            var produtos = await _unf.ProdutoRepositorie.GetProdutosAsync(paginatorParams);
+            var service = await _produtoService.GetPaginator(paginatorParams);
 
-            if (produtos is null)
-            {
-                return NotFound("produtos não encontrado");
-            }
-
-            return ObterProdutos(produtos);
+            return service.Valid ? Ok(service) : BadRequest(service);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Response<string>> Created(ProdutoRequestDTO produtoDTO)
+        public async Task<ActionResult<Response<ProdutoResponseDTO>>> Created(ProdutoRequestDTO produtoDTO)
         {
-            var produto = _mapper.Map<Produtos>(produtoDTO);
+            var service = await _produtoService.Created(produtoDTO);
 
-            var postProduto = _unf.ProdutoRepositorie.Create(produto);
-
-            if (postProduto is null)
-            {
-                return BadRequest();
-            }
-            await _unf.commitAsync();
-            var novosProdutos = _mapper.Map<ProdutoRequestDTO>(postProduto);
-
-            return new CreatedAtRouteResult("ObterProduto",
-                new { id = novosProdutos.ProdutoId }, novosProdutos);
+            return service.Valid ? Ok(service) : BadRequest(service);
 
         }
 
         [HttpPut("{id:int}")]
         public async Task<ActionResult<Response<string>>> Put(int id, ProdutoRequestDTO produtoDTO)
         {
-            if (id != produtoDTO.ProdutoId)
+            if (id < 1)
             {
-                return BadRequest("Dados Inconcistentes");
+                return BadRequest(Response<ProdutoResponseDTO>.Fail("O id precisa ser enviado"));
             }
-            var produto = _mapper.Map<Produtos>(produtoDTO);
 
-            var putProduto = _unf.ProdutoRepositorie.Update(produto);
-
-            if (putProduto is null)
-            {
-                return NotFound("Produto Não Encontrados");
-            }
-            await _unf.commitAsync();
-            var novosProdutos = _mapper.Map<ProdutoRequestDTO>(putProduto);
-            return Ok(novosProdutos);
+            var service = await _produtoService.Put(id,produtoDTO);
+            return service.Valid ? Ok(service) : BadRequest(service);
 
         }
 
-        [HttpPatch("{id:int}/{estoque:int}/update-estoque")]
-        public async Task<ActionResult<Response<string>>> UpdateEstoque(int id, int estoque)
+        [HttpPatch("{id:int}/estoque/add/")]
+        public async Task<ActionResult<Response<ProdutoResponseDTO>>> AdicionarEstoque(
+                int id, 
+                [FromBody] JsonPatchDocument<EstoqueProdutoDTO> patchDoc
+            )
         {
-            if (patchProdutoDTO is null || id <= 0)
+            if (id < 1)
             {
                 return BadRequest("Informaçõs invalidas");
             }
 
-            var produto = await _unf.ProdutoRepositorie.GetAsync(p => p.ProdutoId == id);
-
-            if (produto is null)
-            {
-                return NotFound("Produto não existe!");
-            }
-
-            var produtoUpdateRequest = _mapper.Map<ProdutoUpdateRequaestDTO>
-                (produto);
-
-            patchProdutoDTO.ApplyTo(produtoUpdateRequest, ModelState);
-
-            if (!ModelState.IsValid || !TryValidateModel(produtoUpdateRequest))
+            var dto = new EstoqueProdutoDTO();
+            patchDoc.ApplyTo(dto, ModelState);
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _mapper.Map(produtoUpdateRequest, produto);
-            _unf.ProdutoRepositorie.Update(produto);
-            await _unf.commitAsync();
-
-            var produtoUpdateResponse = _mapper.Map<ProdutoUpdateResponseDTO>
-                (produto);
-
-            return Ok(produtoUpdateResponse);
+            var service = await _produtoService.AdicionarEstoque(id, dto.Estoque);
+            return service.Valid ? Ok(service) : BadRequest(service);
         }
 
-        [HttpPatch("/deactivate/{id:int}")]
+        [HttpPatch("{id:int}/estoque/Remover/")]
+        public async Task<ActionResult<Response<ProdutoResponseDTO>>> RemoverEstoque(
+                int id,
+                [FromBody] JsonPatchDocument<EstoqueProdutoDTO> patchDoc
+            )
+        {
+            if (id < 1)
+            {
+                return BadRequest("Informaçõs invalidas");
+            }
+
+            var dto = new EstoqueProdutoDTO();
+            patchDoc.ApplyTo(dto, ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var service = await _produtoService.RemoverEstoque(id, dto.Estoque);
+            return service.Valid ? Ok(service) : BadRequest(service);
+        }
+
+        [HttpPatch("deactivate/{id:int}")]
         public async Task<ActionResult<CategoriaResponseDTO>> Deactivate(int id)
         {
             if (id < 1)
             {
-                return BadRequest("Id inválido");
+                return BadRequest("Parametro inválido");
             }
 
-            var service = await _categoriaService.Deactivate(id);
+            var service = await _produtoService.Deactivate(id);
 
             return service.Valid ? Ok(service) : BadRequest(service);
         }
 
-        [HttpPatch("/activate/{id:int}")]
+        [HttpPatch("activate/{id:int}")]
         public async Task<ActionResult<CategoriaResponseDTO>> Activate(int id)
         {
             if (id < 1)
             {
-                return BadRequest("Id inválido");
+                return BadRequest("Parametro inválido");
             }
 
-            var service = await _categoriaService.Activate(id);
+            var service = await _produtoService.Activate(id);
 
             return service.Valid ? Ok(service) : BadRequest(service);
         }

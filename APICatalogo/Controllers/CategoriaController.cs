@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace APICatalogo.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/categoria")]
     [ApiController]
     public class CategoriaController : ControllerBase
     {
@@ -32,9 +32,10 @@ namespace APICatalogo.Controllers
             return service.Valid ? Ok(service) : BadRequest(service);
         }
 
-        [HttpGet("Paginator")]
+        [HttpGet("paginator")]
         public async Task<ActionResult<CategoriaResponseDTO>> GetPaginator([FromQuery] CategoriasPaginator categoriasPaginator)
         {
+            Console.WriteLine("entroouuuuuu");
             var service = await _categoriaService.GetPaginator(categoriasPaginator);
 
             return service.Valid ? Ok(service) : BadRequest(service);
