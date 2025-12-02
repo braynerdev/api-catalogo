@@ -135,7 +135,7 @@
         }
       }
     },
-    "/api/categoria/{id}": {
+    "/api/Categoria/{id}": {
       "get": {
         "tags": [
           "Categoria"
@@ -204,7 +204,7 @@
         }
       }
     },
-    "/api/categoria/paginator": {
+    "/api/Categoria/paginator": {
       "get": {
         "tags": [
           "Categoria"
@@ -214,6 +214,8 @@
             "name": "Name",
             "in": "query",
             "schema": {
+              "maxLength": 150,
+              "minLength": 0,
               "type": "string"
             }
           },
@@ -230,6 +232,13 @@
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Active",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
@@ -265,7 +274,7 @@
         }
       }
     },
-    "/api/categoria": {
+    "/api/Categoria": {
       "post": {
         "tags": [
           "Categoria"
@@ -347,7 +356,7 @@
         }
       }
     },
-    "/Produto/{id}": {
+    "/api/Produto/{id}": {
       "get": {
         "tags": [
           "Produto"
@@ -433,7 +442,7 @@
         }
       }
     },
-    "/Produto/paginator": {
+    "/api/Produto/paginator": {
       "get": {
         "tags": [
           "Produto"
@@ -470,6 +479,13 @@
             }
           },
           {
+            "name": "Active",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
             "schema": {
@@ -502,7 +518,7 @@
         }
       }
     },
-    "/Produto": {
+    "/api/Produto/created": {
       "post": {
         "tags": [
           "Produto"
@@ -555,7 +571,7 @@
         }
       }
     },
-    "/Produto/{id}/estoque/add": {
+    "/api/Produto/{id}/estoque/add": {
       "patch": {
         "tags": [
           "Produto"
@@ -631,7 +647,7 @@
         }
       }
     },
-    "/Produto/{id}/estoque/Remover": {
+    "/api/Produto/{id}/estoque/Remover": {
       "patch": {
         "tags": [
           "Produto"
@@ -707,7 +723,7 @@
         }
       }
     },
-    "/Produto/deactivate/{id}": {
+    "/api/Produto/deactivate/{id}": {
       "patch": {
         "tags": [
           "Produto"
@@ -747,7 +763,7 @@
         }
       }
     },
-    "/Produto/activate/{id}": {
+    "/api/Produto/activate/{id}": {
       "patch": {
         "tags": [
           "Produto"
@@ -972,7 +988,7 @@
         "type": "object",
         "properties": {
           "name": {
-            "maxLength": 80,
+            "maxLength": 150,
             "minLength": 0,
             "type": "string"
           },
@@ -1097,9 +1113,12 @@
       "ProdutoResponseDTO": {
         "type": "object",
         "properties": {
-          "produtoId": {
+          "id": {
             "type": "integer",
             "format": "int32"
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "type": "string",
@@ -1117,9 +1136,8 @@
             "type": "string",
             "nullable": true
           },
-          "categoriaId": {
-            "type": "integer",
-            "format": "int32"
+          "categoria": {
+            "$ref": "#/components/schemas/CategoriaResponseDTO"
           },
           "estoque": {
             "type": "integer",

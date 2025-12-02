@@ -8,6 +8,7 @@ using APICatalogo.Repositories.Produto;
 using APICatalogo.Services;
 using APICatalogo.Services.Auth;
 using APICatalogo.Services.Categoria;
+using APICatalogo.Services.Produto;
 using APICatalogo.Services.Roles;
 using Microsoft.AspNetCore.Identity;
 
@@ -20,6 +21,7 @@ namespace APICatalogo.Conf
             services.AddScoped<ApiLoggingFilter>();
             services.AddScoped<ICategoriaRepositorie, CategoriaRepositorie>();
             services.AddScoped<IProdutoRepositorie, ProdutoRepositorie>();
+            services.AddScoped<IProdutoService, ProdutoService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICategoriaService, CategoriaService>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

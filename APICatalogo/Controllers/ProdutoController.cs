@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace APICatalogo.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     //[Authorize(Policy = "UserValidOnly")]
     public class ProdutoController : ControllerBase
@@ -48,13 +48,13 @@ namespace APICatalogo.Controllers
             return service.Valid ? Ok(service) : BadRequest(service);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Response<ProdutoResponseDTO>>> Created(ProdutoRequestDTO produtoDTO)
+        [HttpPost("created")]
+        public async Task<ActionResult<Response<ProdutoResponseDTO>>> Created([FromBody] ProdutoRequestDTO produtoDTO)
         {
+            Console.WriteLine("peffpsmfçwempf");
             var service = await _produtoService.Created(produtoDTO);
 
             return service.Valid ? Ok(service) : BadRequest(service);
-
         }
 
         [HttpPut("{id:int}")]
@@ -66,8 +66,7 @@ namespace APICatalogo.Controllers
             }
 
             var service = await _produtoService.Put(id,produtoDTO);
-            return service.Valid ? Ok(service) : BadRequest(service);
-
+            return service.Valid ? Ok(service) : NotFound(service);
         }
 
         [HttpPatch("{id:int}/estoque/add/")]
@@ -79,6 +78,11 @@ namespace APICatalogo.Controllers
             if (id < 1)
             {
                 return BadRequest("Informaçõs invalidas");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return ValidationProblem(ModelState); 
             }
 
             var dto = new EstoqueProdutoDTO();

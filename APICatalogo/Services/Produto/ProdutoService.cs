@@ -23,29 +23,31 @@ namespace APICatalogo.Services.Produto
         }
         public async Task<Response<ProdutoResponseDTO>> Created(ProdutoRequestDTO produtoDTO)
         {
+            var categoria = await _unf.CategoriaRepositorie.GetAsync(c => c.Id == produtoDTO.CategoriaId);
             var produto = _mapper.Map<Produtos>(produtoDTO);
-
-            var postProduto =  _unf.ProdutoRepositorie.Create(produto);
-
-            if (postProduto is null)
-            {
-                return Response<ProdutoResponseDTO>.Fail("Erro ao criar produto");
-            }
+            produto.CategoriaId = categoria.Id;
+            _unf.ProdutoRepositorie.Create(produto);
             await _unf.commitAsync();
-            var novosProdutos = _mapper.Map<ProdutoRequestDTO>(postProduto);
-
-            return Response<ProdutoResponseDTO>.Success("Produto criado com sucesso!",null);
+            var produtoResponse = _mapper.Map<ProdutoResponseDTO>(produto);
+            
+            return Response<ProdutoResponseDTO>.Success("Produto criado com sucesso!", produtoResponse);
         }
 
         public async Task<Response<ProdutoResponseDTO>> GetById(int id)
         {
             var produto = await _unf.ProdutoRepositorie.GetAsync(p => p.Id == id);
-
+            
             if (produto is null)
             {
                 return Response<ProdutoResponseDTO>.Fail("Produto não encontrado"); ;
             }
+            
+            var categoria = await _unf.CategoriaRepositorie.GetAsync(c => c.Id == produto.CategoriaId);
+            
+            var categoriaDTO = _mapper.Map<CategoriaResponseDTO>(categoria);
             var produtoResponse = _mapper.Map<ProdutoResponseDTO>(produto);
+            
+            produtoResponse.Categoria = categoriaDTO;
             return Response<ProdutoResponseDTO>.Success("Produto encontrado com sucesso!", produtoResponse);
         }
 
@@ -68,19 +70,20 @@ namespace APICatalogo.Services.Produto
         public async Task<Response<ProdutoResponseDTO>> Put(int id, ProdutoRequestDTO produtoDTO)
         {
             
-            bool produto = await _unf.ProdutoRepositorie.GetByExists(id);
+            var produto = await _unf.ProdutoRepositorie.GetAsync(p => p.Id == id);
 
-            if (!produto)
+            if (produto == null)
             {
                 return Response<ProdutoResponseDTO>.Fail("Produto não existe");
             }
-            var produtoMap = _mapper.Map<Produtos>(produtoDTO);
 
-            var putProduto = _unf.ProdutoRepositorie.Update(produtoMap);
+            _mapper.Map(produtoDTO, produto);
+
+            _unf.ProdutoRepositorie.Update(produto);
 
         
             await _unf.commitAsync();
-            return Response<ProdutoResponseDTO>.Success("Produto não existe", null);
+            return Response<ProdutoResponseDTO>.Success("Produto atualizado com sucesso", null);
         }
 
         public async Task<Response<ProdutoResponseDTO>> AdicionarEstoque(int id, int estoque)

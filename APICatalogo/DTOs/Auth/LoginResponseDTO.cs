@@ -2,6 +2,6 @@
 {
     public record LoginResponseDTO(
         UserResponseDTO User,
-        TokenResponse Token
+        TokenResponse Auth
     );
 }

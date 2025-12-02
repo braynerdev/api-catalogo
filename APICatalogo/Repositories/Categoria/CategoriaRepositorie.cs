@@ -21,12 +21,16 @@ namespace APICatalogo.Repositories.Categoria
         {
             var categorias = await GetAllAsync();
             var name = categoriasParams.Name;
+            var active = categoriasParams.Active;
+
+            categorias = categorias.Where(c => c.Active == active);
+
             if (!name.IsNullOrEmpty())
             {
                 categorias = categorias
-                                .Where(n => n.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+                                .Where(c => c.Name.Contains(name));
             }
-            categorias = categorias.AsQueryable();
+                categorias = categorias.AsQueryable();
             var pagListCategorias = PagdList<Categorias>.ToPagdList(categorias, c => c.Id, categoriasParams.OrderBy, categoriasParams.NumberPage, categoriasParams.PageSize);
             return pagListCategorias;
         }

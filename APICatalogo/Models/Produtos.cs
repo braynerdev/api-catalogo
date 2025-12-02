@@ -24,5 +24,8 @@ public class Produtos : Base
     public int Estoque { get; set; }
 
     [Column("categoria_id")]
+    public int CategoriaId { get; set; }
+
     public Categorias Categoria { get; set; }
+
 }

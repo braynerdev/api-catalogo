@@ -32,9 +32,20 @@
             return new Response<T>(message, data); 
         }
 
+        public Response(bool valid, string message, T? data)
+        {
+            Valid = valid;
+            Message = message;
+            Data = data;
+        }
+
         public static Response<T> Fail(string message)
         {
             return new Response<T>(message, false);
+        }
+        public static Response<T> Error(T data)
+        {
+            return new Response<T>(false, "Ocorreram erros de validação.", data);
         }
     }
 }

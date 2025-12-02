@@ -2,10 +2,12 @@
 {
     public abstract class PaginatorParamiters
     {
-        const int MaxSize = 99;
+        const int MaxSize = 100;
         public int NumberPage { get; set; } = 1;
         private int _pageSize = MaxSize;
         public string OrderBy { get; set; } = "ASC";
+
+        public bool Active { get; set; }
 
         public int PageSize
         {

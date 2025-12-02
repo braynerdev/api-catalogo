@@ -23,7 +23,7 @@ namespace APICatalogo.Repositories.Produto
 
         public async Task<Produtos> GetById(int id)
         {
-            Produtos produto = _context.Produtos.FirstOrDefault(p => p.Id == id);
+            var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.Id == id);
             return produto;
         }
 

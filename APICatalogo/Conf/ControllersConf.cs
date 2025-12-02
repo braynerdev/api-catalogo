@@ -1,4 +1,5 @@
-﻿using APICatalogo.Filters;
+﻿using APICatalogo.DTOs;
+using APICatalogo.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 
@@ -20,8 +21,7 @@ namespace APICatalogo.Conf
                         .Where(e => e.Value.Errors.Count > 0)
                         .Select(e => new { Field = e.Key, Errors = e.Value.Errors.Select(er => er.ErrorMessage) })
                         .ToArray();
-
-                    return new BadRequestObjectResult(new { Message = "Validação falhou", Errors = errors });
+                    return new BadRequestObjectResult(Response<object>.Error(errors)); ;
                 };
             })
             .AddJsonOptions(options =>

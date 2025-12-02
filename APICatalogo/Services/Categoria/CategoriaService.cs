@@ -121,15 +121,17 @@ namespace APICatalogo.Services.Categoria
 
         public async Task<Response<CategoriaResponseDTO>> Put(int id, CategoriaRequestDTO categoriaRequestDTO)
         {
-            var categoria = _mapper.Map<Categorias>(categoriaRequestDTO);
-            var updateCategoria = _unf.CategoriaRepositorie.Update(categoria);
-
-            if (updateCategoria is null)
+            var categoria = await _unf.CategoriaRepositorie.GetAsync(c => c.Id == id);
+            if (categoria is null)
             {
-                return Response<CategoriaResponseDTO>.Fail("Erro ao atualizar Categoria!");
+                return Response<CategoriaResponseDTO>.Fail("Categoria não existe");
             }
+        
+            _mapper.Map(categoriaRequestDTO, categoria);
+            _unf.CategoriaRepositorie.Update(categoria);
 
             await _unf.commitAsync();
+
             return Response<CategoriaResponseDTO>.Success("Categoria atualizada com sucesso!", null);
         }
     }

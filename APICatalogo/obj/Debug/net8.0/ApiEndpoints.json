@@ -82,7 +82,7 @@
   {
     "ContainingType": "APICatalogo.Controllers.CategoriaController",
     "Method": "Created",
-    "RelativePath": "api/categoria",
+    "RelativePath": "api/Categoria",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -98,7 +98,7 @@
   {
     "ContainingType": "APICatalogo.Controllers.CategoriaController",
     "Method": "GetById",
-    "RelativePath": "api/categoria/{id}",
+    "RelativePath": "api/Categoria/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -115,7 +115,7 @@
   {
     "ContainingType": "APICatalogo.Controllers.CategoriaController",
     "Method": "Put",
-    "RelativePath": "api/categoria/{id}",
+    "RelativePath": "api/Categoria/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -136,7 +136,7 @@
   {
     "ContainingType": "APICatalogo.Controllers.CategoriaController",
     "Method": "GetPaginator",
-    "RelativePath": "api/categoria/paginator",
+    "RelativePath": "api/Categoria/paginator",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -157,6 +157,11 @@
         "IsRequired": false
       },
       {
+        "Name": "Active",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
         "Name": "PageSize",
         "Type": "System.Int32",
         "IsRequired": false
@@ -165,6 +170,245 @@
     "ReturnTypes": [
       {
         "Type": "APICatalogo.DTOs.Categoria.CategoriaResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APICatalogo.Controllers.ProdutoController",
+    "Method": "GetById",
+    "RelativePath": "api/Produto/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "ObterProduto"
+  },
+  {
+    "ContainingType": "APICatalogo.Controllers.ProdutoController",
+    "Method": "Put",
+    "RelativePath": "api/Produto/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "produtoDTO",
+        "Type": "APICatalogo.DTOs.Produto.ProdutoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APICatalogo.DTOs.Response\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APICatalogo.Controllers.ProdutoController",
+    "Method": "AdicionarEstoque",
+    "RelativePath": "api/Produto/{id}/estoque/add",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "patchDoc",
+        "Type": "Microsoft.AspNetCore.JsonPatch.Operations.Operation[]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APICatalogo.DTOs.Response\u00601[[APICatalogo.DTOs.Produto.ProdutoResponseDTO, APICatalogo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APICatalogo.Controllers.ProdutoController",
+    "Method": "RemoverEstoque",
+    "RelativePath": "api/Produto/{id}/estoque/Remover",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "patchDoc",
+        "Type": "Microsoft.AspNetCore.JsonPatch.Operations.Operation[]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APICatalogo.DTOs.Response\u00601[[APICatalogo.DTOs.Produto.ProdutoResponseDTO, APICatalogo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APICatalogo.Controllers.ProdutoController",
+    "Method": "Activate",
+    "RelativePath": "api/Produto/activate/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APICatalogo.DTOs.Categoria.CategoriaResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APICatalogo.Controllers.ProdutoController",
+    "Method": "Created",
+    "RelativePath": "api/Produto/created",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "produtoDTO",
+        "Type": "APICatalogo.DTOs.Produto.ProdutoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APICatalogo.DTOs.Response\u00601[[APICatalogo.DTOs.Produto.ProdutoResponseDTO, APICatalogo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APICatalogo.Controllers.ProdutoController",
+    "Method": "Deactivate",
+    "RelativePath": "api/Produto/deactivate/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APICatalogo.DTOs.Categoria.CategoriaResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APICatalogo.Controllers.ProdutoController",
+    "Method": "GetPaginator",
+    "RelativePath": "api/Produto/paginator",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Categoria",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "NumberPage",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Active",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APICatalogo.DTOs.Produto.ProdutoRequestDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -287,239 +531,5 @@
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "APICatalogo.Controllers.ProdutoController",
-    "Method": "Created",
-    "RelativePath": "Produto",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "produtoDTO",
-        "Type": "APICatalogo.DTOs.Produto.ProdutoRequestDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "APICatalogo.DTOs.Response\u00601[[APICatalogo.DTOs.Produto.ProdutoResponseDTO, APICatalogo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "APICatalogo.Controllers.ProdutoController",
-    "Method": "GetById",
-    "RelativePath": "Produto/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [],
-    "EndpointName": "ObterProduto"
-  },
-  {
-    "ContainingType": "APICatalogo.Controllers.ProdutoController",
-    "Method": "Put",
-    "RelativePath": "Produto/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "produtoDTO",
-        "Type": "APICatalogo.DTOs.Produto.ProdutoRequestDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "APICatalogo.DTOs.Response\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "APICatalogo.Controllers.ProdutoController",
-    "Method": "AdicionarEstoque",
-    "RelativePath": "Produto/{id}/estoque/add",
-    "HttpMethod": "PATCH",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "patchDoc",
-        "Type": "Microsoft.AspNetCore.JsonPatch.Operations.Operation[]",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "APICatalogo.DTOs.Response\u00601[[APICatalogo.DTOs.Produto.ProdutoResponseDTO, APICatalogo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "APICatalogo.Controllers.ProdutoController",
-    "Method": "RemoverEstoque",
-    "RelativePath": "Produto/{id}/estoque/Remover",
-    "HttpMethod": "PATCH",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "patchDoc",
-        "Type": "Microsoft.AspNetCore.JsonPatch.Operations.Operation[]",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "APICatalogo.DTOs.Response\u00601[[APICatalogo.DTOs.Produto.ProdutoResponseDTO, APICatalogo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "APICatalogo.Controllers.ProdutoController",
-    "Method": "Activate",
-    "RelativePath": "Produto/activate/{id}",
-    "HttpMethod": "PATCH",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "APICatalogo.DTOs.Categoria.CategoriaResponseDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "APICatalogo.Controllers.ProdutoController",
-    "Method": "Deactivate",
-    "RelativePath": "Produto/deactivate/{id}",
-    "HttpMethod": "PATCH",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "APICatalogo.DTOs.Categoria.CategoriaResponseDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "APICatalogo.Controllers.ProdutoController",
-    "Method": "GetPaginator",
-    "RelativePath": "Produto/paginator",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Categoria",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "NumberPage",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "OrderBy",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageSize",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "APICatalogo.DTOs.Produto.ProdutoRequestDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
   }
 ]
