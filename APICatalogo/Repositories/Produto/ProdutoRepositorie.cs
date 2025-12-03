@@ -32,16 +32,20 @@ namespace APICatalogo.Repositories.Produto
             var produtos = await GetAllAsync();
             var name = paginatorParams.Name;
             var categoria = paginatorParams.Categoria;
+            var active = paginatorParams.Active;
+
+            produtos = produtos.Where(p => p.Active == active);
 
             if (!string.IsNullOrEmpty(name))
             {
-                produtos = produtos.Where(p => p.Name == name);
+                produtos = produtos.Where(p => p.Name.Contains(name));
             }
 
             if (categoria.HasValue)
             {
-                produtos = produtos.Where(p => p.Categoria.Id == categoria.Value);
+                produtos = produtos.Where(p => p.CategoriaId == categoria.Value);
             }
+
             var pageListdProdutos = PagdList<Produtos>.ToPagdList(produtos, c => c.Id, paginatorParams.OrderBy, paginatorParams.NumberPage, paginatorParams.PageSize);
             return pageListdProdutos;
         }

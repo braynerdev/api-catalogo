@@ -1,71 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\DEV\\APICatalogo\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{9456921E-C086-4F0F-84E8-9270E9220325}|APICatalogo\\APICatalogo.csproj|c:\\dev\\apicatalogo\\apicatalogo\\controllers\\produtocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9456921E-C086-4F0F-84E8-9270E9220325}|APICatalogo\\APICatalogo.csproj|solutionrelative:apicatalogo\\controllers\\produtocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9456921E-C086-4F0F-84E8-9270E9220325}|APICatalogo\\APICatalogo.csproj|c:\\dev\\apicatalogo\\apicatalogo\\services\\categoria\\categoriaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9456921E-C086-4F0F-84E8-9270E9220325}|APICatalogo\\APICatalogo.csproj|solutionrelative:apicatalogo\\services\\categoria\\categoriaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9456921E-C086-4F0F-84E8-9270E9220325}|APICatalogo\\APICatalogo.csproj|c:\\dev\\apicatalogo\\apicatalogo\\services\\produto\\produtoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9456921E-C086-4F0F-84E8-9270E9220325}|APICatalogo\\APICatalogo.csproj|solutionrelative:apicatalogo\\services\\produto\\produtoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\jbray\\DEV\\api-catalogo\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 211,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CategoriaService.cs",
-              "DocumentMoniker": "C:\\DEV\\APICatalogo\\APICatalogo\\Services\\Categoria\\CategoriaService.cs",
-              "RelativeDocumentMoniker": "APICatalogo\\Services\\Categoria\\CategoriaService.cs",
-              "ToolTip": "C:\\DEV\\APICatalogo\\APICatalogo\\Services\\Categoria\\CategoriaService.cs",
-              "RelativeToolTip": "APICatalogo\\Services\\Categoria\\CategoriaService.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAYwIIAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T13:32:01.931Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProdutoService.cs",
-              "DocumentMoniker": "C:\\DEV\\APICatalogo\\APICatalogo\\Services\\Produto\\ProdutoService.cs",
-              "RelativeDocumentMoniker": "APICatalogo\\Services\\Produto\\ProdutoService.cs",
-              "ToolTip": "C:\\DEV\\APICatalogo\\APICatalogo\\Services\\Produto\\ProdutoService.cs",
-              "RelativeToolTip": "APICatalogo\\Services\\Produto\\ProdutoService.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAkwEoAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T13:31:05.738Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProdutoController.cs",
-              "DocumentMoniker": "C:\\DEV\\APICatalogo\\APICatalogo\\Controllers\\ProdutoController.cs",
-              "RelativeDocumentMoniker": "APICatalogo\\Controllers\\ProdutoController.cs",
-              "ToolTip": "C:\\DEV\\APICatalogo\\APICatalogo\\Controllers\\ProdutoController.cs",
-              "RelativeToolTip": "APICatalogo\\Controllers\\ProdutoController.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAgwFQAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T13:29:28.627Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

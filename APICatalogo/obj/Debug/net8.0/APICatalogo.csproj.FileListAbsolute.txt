@@ -500,7 +500,6 @@ C:\Users\jbray\DEV\api-catalogo\APICatalogo\obj\Debug\net8.0\refint\APICatalogo.
 C:\Users\jbray\DEV\api-catalogo\APICatalogo\obj\Debug\net8.0\APICatalogo.pdb
 C:\Users\jbray\DEV\api-catalogo\APICatalogo\obj\Debug\net8.0\APICatalogo.genruntimeconfig.cache
 C:\Users\jbray\DEV\api-catalogo\APICatalogo\obj\Debug\net8.0\ref\APICatalogo.dll
-C:\Users\jbray\DEV\api-catalogo\APICatalogo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\DEV\APICatalogo\APICatalogo\bin\Debug\net8.0\appsettings.Development.json
 C:\DEV\APICatalogo\APICatalogo\bin\Debug\net8.0\appsettings.json
 C:\DEV\APICatalogo\APICatalogo\bin\Debug\net8.0\APICatalogo.staticwebassets.endpoints.json
@@ -613,3 +612,4 @@ C:\DEV\APICatalogo\APICatalogo\obj\Debug\net8.0\APICatal.C7776A93.Up2Date
 C:\DEV\APICatalogo\APICatalogo\obj\Debug\net8.0\APICatalogo.genruntimeconfig.cache
 C:\DEV\APICatalogo\APICatalogo\obj\Debug\net8.0\ref\APICatalogo.dll
 C:\DEV\APICatalogo\APICatalogo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\jbray\DEV\api-catalogo\APICatalogo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

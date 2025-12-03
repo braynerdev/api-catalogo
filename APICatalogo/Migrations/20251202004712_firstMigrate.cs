@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace APICatalogo.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigrate : Migration
+    public partial class firstMigrate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -261,7 +261,7 @@ namespace APICatalogo.Migrations
                     image_url = table.Column<string>(type: "varchar(300)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     qtd_estoque = table.Column<decimal>(type: "decimal(10,0)", nullable: false),
-                    CategoriaId = table.Column<int>(type: "int", nullable: false),
+                    categoria_id = table.Column<int>(type: "int", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     update_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     active = table.Column<bool>(type: "tinyint(1)", nullable: false)
@@ -270,8 +270,8 @@ namespace APICatalogo.Migrations
                 {
                     table.PrimaryKey("PK_Produtos", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Produtos_Categorias_CategoriaId",
-                        column: x => x.CategoriaId,
+                        name: "FK_Produtos_Categorias_categoria_id",
+                        column: x => x.categoria_id,
                         principalTable: "Categorias",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -316,9 +316,9 @@ namespace APICatalogo.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produtos_CategoriaId",
+                name: "IX_Produtos_categoria_id",
                 table: "Produtos",
-                column: "CategoriaId");
+                column: "categoria_id");
         }
 
         /// <inheritdoc />

@@ -18,6 +18,6 @@ namespace APICatalogo.Models
         public DateTime UpdateAt { get; set; }
 
         [Column("active", TypeName = "tinyint(1)")]
-        public bool Active { get; set; }
+        public bool Active { get; set; } = true;
     }
 }

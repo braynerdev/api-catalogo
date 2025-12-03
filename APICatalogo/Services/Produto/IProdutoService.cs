@@ -10,7 +10,7 @@ namespace APICatalogo.Services.Produto
     public interface IProdutoService
     {
         Task<Response<ProdutoResponseDTO>> GetById(int id);
-        Task<Response<PagdList<ProdutoResponseDTO>>> GetPaginator(ProdutosPaginator paginatorParams);
+        Task<Response<ProdutoPaginatorResponseDTO>> GetPaginator(ProdutosPaginator paginatorParams);
         Task<Response<ProdutoResponseDTO>> Created(ProdutoRequestDTO produtoDTO);
         Task<Response<ProdutoResponseDTO>> Put(int id, ProdutoRequestDTO produtoDTO);
         Task<Response<ProdutoResponseDTO>> AdicionarEstoque(int id, int estoque);

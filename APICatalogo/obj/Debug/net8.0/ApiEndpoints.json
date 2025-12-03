@@ -408,7 +408,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "APICatalogo.DTOs.Produto.ProdutoRequestDTO",
+        "Type": "APICatalogo.DTOs.Produto.ProdutoResponseDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",

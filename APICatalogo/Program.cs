@@ -31,7 +31,7 @@ var app = builder.Build();
 app
     .UseSwaggerConf()
     //.UseHsts()
-    .UseHttpsRedirection()
+    //.UseHttpsRedirection() // Comentado para desenvolvimento - React Native precisa de HTTP
     .UseStaticFiles()
     .UseRouting()
     .UseRateLimiterConf()

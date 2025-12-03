@@ -51,19 +51,34 @@ namespace APICatalogo.Services.Produto
             return Response<ProdutoResponseDTO>.Success("Produto encontrado com sucesso!", produtoResponse);
         }
 
-        public async Task<Response<PagdList<ProdutoResponseDTO>>> GetPaginator(ProdutosPaginator paginatorParams)
+        public async Task<Response<ProdutoPaginatorResponseDTO>> GetPaginator(ProdutosPaginator paginatorParams)
         {
             var produtos = await _unf.ProdutoRepositorie.GetPaginator(paginatorParams);
 
             if (produtos.Count < 1)
             {
-                return Response<PagdList<ProdutoResponseDTO>>.Fail("Nenhum Produto foi encontrado!");
+                return Response<ProdutoPaginatorResponseDTO>.Fail("Nenhum Produto foi encontrado!");
             }
-            var map = _mapper.Map<PagdList<ProdutoResponseDTO>>(produtos);
 
-            return Response<PagdList<ProdutoResponseDTO>>.Success(
+            var produtosDto = _mapper.Map<List<ProdutoResponseDTO>>(produtos);
+
+            var response = new ProdutoPaginatorResponseDTO
+            {
+                Paginator = new PaginatorResponseDTO
+                {
+                    CurrentPag = produtos.CurrentPag,
+                    TotalPages = produtos.TotalPages,
+                    PageSize = produtos.PageSize,
+                    TotalCount = produtos.TotalCount,
+                    HasNext = produtos.HasNext,
+                    HasPreview = produtos.HasPreview
+                },
+                Items = produtosDto
+            };
+
+            return Response<ProdutoPaginatorResponseDTO>.Success(
                 "Produtos resgatados com sucesso!",
-                map
+                response
             );
         }
 

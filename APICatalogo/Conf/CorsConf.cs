@@ -11,7 +11,9 @@ namespace APICatalogo.Conf
                 options.AddPolicy(name: OrigensComAcessoPermitido,
                     policy =>
                     {
-                        policy.WithOrigins("https://apirequest.io");
+                        policy.AllowAnyOrigin()
+                              .AllowAnyMethod()
+                              .AllowAnyHeader();
                     })
             );
 

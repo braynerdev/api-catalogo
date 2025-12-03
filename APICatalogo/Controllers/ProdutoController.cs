@@ -41,11 +41,11 @@ namespace APICatalogo.Controllers
         }
 
         [HttpGet("paginator")]
-        public async Task<ActionResult<ProdutoRequestDTO>> GetPaginator([FromQuery] ProdutosPaginator paginatorParams)
+        public async Task<ActionResult<ProdutoResponseDTO>> GetPaginator([FromQuery] ProdutosPaginator paginatorParams)
         {
             var service = await _produtoService.GetPaginator(paginatorParams);
 
-            return service.Valid ? Ok(service) : BadRequest(service);
+            return service.Valid ? Ok(service) : NotFound(service);
         }
 
         [HttpPost("created")]
